@@ -1,10 +1,13 @@
 package main
 
-func getAverage(result []float64) float64 {
+import "math"
+
+func getAverage(data []float64) float64 {
 	array := 0.0
-	for _, v := range result {
+	for _, v := range data {
 		array += v
 	}
-	return array / float64(len(result))
+	result := array / float64(len(data))
+	return math.Round(result)
 
 }

@@ -1,10 +1,11 @@
 package main
 
 import (
-	"encoding/binary"
 	"fmt"
 	"log"
 	"os"
+	"strconv"
+	"strings"
 )
 
 /*The purpose of this project is for you to calculate the following:
@@ -33,11 +34,19 @@ func getArguments() string {
 	return args[0]
 }
 
-func readFile(file string) float64 {
+func readFile(file string) []float64 {
 	data, err := os.ReadFile(file)
-	result := binary.BigEndian.Uint64(data)
+	dataArr := strings.Split(string(data), "\n")
+	result := make([]float64, 0)
+	for i := 0; i < len(dataArr); i++ {
+		conv, _ := strconv.Atoi(dataArr[i])
+		result = append(result, float64(conv))
+	}
+
+	//result := binary.BigEndian.Uint64(dataArr[i])
 	if err != nil {
 		log.Fatal("Cannot read the file")
+		os.Exit(0)
 	}
-	return float64(result)
+	return result
 }

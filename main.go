@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math"
+)
 
 func main() {
 
@@ -8,9 +11,14 @@ func main() {
 
 	file := readFile(argument)
 
-	fmt.Printf("Average: %v", getAverage)
-	fmt.Printf("Median: %v", getMedian)
-	fmt.Printf("Variance: %v", getVariance)
-	fmt.Printf("Standard Deviation: %v", getStDeviation)
+	average := getAverage(file)
+	median := getMedian(file)
+	variance := getVariance(file)
+	stDeviation := getStDeviation(file, average)
+
+	fmt.Printf("Average: %v \n", math.Round(average))
+	fmt.Printf("Median: %v \n", math.Round(median))
+	fmt.Printf("Variance: %v \n", math.Round(variance))
+	fmt.Printf("Standard Deviation: %v \n", math.Round(stDeviation))
 
 }
